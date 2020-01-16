@@ -49,8 +49,8 @@ class SingleElementMatcher(with_metaclass(ABCMeta, object)):
                 if element not in xpath_elements:
                     error_messages.append("Element didn't match XPath " + value)
             elif attribute is "css":
-                xpath_elements = driver.find_elements_by_css_selector(value)
-                if element not in xpath_elements:
+                css_elements = driver.find_elements_by_css_selector(value)
+                if element not in css_elements:
                     error_messages.append("Element didn't match CSS " + value)
 
         if error_messages:
