@@ -31,8 +31,8 @@ class SingleElementMatcher(with_metaclass(ABCMeta, object)):
                 else:
                     return element
             if elements:
-                raise NoElementMatchFound("No Matching Element Found")
-        raise NoElementMatchFound("No Matching Element Found")
+                raise NoElementMatchFound("No Element Found Matching: " + str(self.search_criteria))
+        raise NoElementMatchFound("No Element Found Matching: " + str(self.search_criteria))
 
 
 

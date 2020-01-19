@@ -2,7 +2,7 @@
 
 from core.sophia_validator import SophiaValidator
 
-class OnPage(SophiaValidator):
+class AssertOnPage(SophiaValidator):
     def __init__(self, url, **kwargs):
         super().__init__(**kwargs)
         self.url = url

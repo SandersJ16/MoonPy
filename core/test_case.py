@@ -39,6 +39,7 @@ class TestCase(with_metaclass(ABCMeta, object)):
     def execute_steps(self):
         for step_name, step in self.steps.items():
             try:
+                print(step_name)
                 step.execute(self.driver)
             except Exception as e:
                 raise TestStepError("Failed during step {step_name} with Error: {exception}".format(step_name=step_name, exception=e))
@@ -73,6 +74,7 @@ class TestCase(with_metaclass(ABCMeta, object)):
                 finally:
                     try:
                         self.cleanup()
+                        result.passed = True
                     except Exception as e:
                         # If we already have an exception don't override it,
                         # there is a good chance this Exception is a side effect

@@ -31,13 +31,13 @@ class TestSuite(object):
                     self._plugins.append(plugin_class_exists)
         return self._plugins
 
-    @lru_cache()
     @property
+    @lru_cache()
     def tests(self):
         test_classes = [test for test in self.all_tests() if test.required_plugins() <= self.active_plugins and not test.restricted_plugins() & self.active_plugins]
         tests = []
         for TestClass in test_classes:
-            test = TestClass(config=self.client_config)
+            test = TestClass()
             for plugin in self.plugins:
                 plugin.modTest(test)
             tests.append(test)
