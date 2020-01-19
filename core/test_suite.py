@@ -15,8 +15,6 @@ class TestSuite(object):
         self._tests = None
         self._plugins = None
         self._active_plugins = None
-        #print(self.all_tests())
-
 
     @property
     def plugins(self):
@@ -33,7 +31,7 @@ class TestSuite(object):
     @property
     @lru_cache()
     def tests(self):
-        test_classes = [test for test in self.all_tests() if test.required_plugins() <= self.active_plugins and not test.restricted_plugins() & self.active_plugins]
+        test_classes = [test for test in self.all_tests if test.required_plugins() <= self.active_plugins and not test.restricted_plugins() & self.active_plugins]
         tests = []
         for TestClass in test_classes:
             test = TestClass()
@@ -43,7 +41,8 @@ class TestSuite(object):
 
         return sorted(tests)
 
-
+    @property
+    @lru_cache()
     def all_tests(self):
         return [test for test in self.all_subclasses(TestCase) if test.__name__.endswith("Test")]
 
