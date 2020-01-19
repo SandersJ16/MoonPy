@@ -2,7 +2,6 @@
 
 import os
 import platform
-import requests
 from collections import OrderedDict
 from functools import lru_cache
 
